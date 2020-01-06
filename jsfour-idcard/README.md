@@ -1,4 +1,4 @@
-# jsfour-idcard
+# ORIGINAL jsfour-idcard
 This is an updated version of my <a href="https://github.com/jonassvensson4/jsfour-legitimation">jsfour-legitimation<a/>. It has and ID card, firearms license and a driver license
 
 ## LICENSE
@@ -17,6 +17,8 @@ You need to add a couple rows of code depending on how you want to use the ID. P
 ![screenshot](https://i.gyazo.com/0aaeaa5b78cd2bef98ee9185bc5295c8.png)
 
 ## USAGE
+
+## I INCLUDED A MENU JUST PRESS F5 OR CHANGE THE KEY IN THE CLIENT SCRIPT
 
 Example on how to add a button-event since people don't want to learn:
 https://pastebin.com/UPQRcAei
