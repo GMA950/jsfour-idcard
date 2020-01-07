@@ -43,9 +43,11 @@ $(document).ready(function(){
 
       if ( trabajo == 'unemployed') {
         trabajo2 = 'CESANTE'; //bike
-      } else if ( TRABAJO == 'mechanic' ) {
+      } else if ( trabajo == 'mechanic' ) {
         trabajo2 = 'MECÁNICO';
-      } //ADD JOBS HERE 
+      } else if ( trabajo == 'police' ) {
+        trabajo2 = 'CARABINERO';
+      }//ADD JOBS HERE 
 
 
       if ( type == 'driver' || type == null) {

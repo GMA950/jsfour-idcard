@@ -61,7 +61,7 @@ AddEventHandler('jsfour-idcard:shot', function(playerID)
 	local headshot = GetPedheadshotTxdString (handle)
 	while open do
 		--print('test2')
-		Wait (10)
+		Wait (5)
 		DrawSprite (headshot, headshot, 0.777, 0.26, 0.07, 0.14, 0.0, 255, 255, 255, 1000)
 	end
 	if not open then
