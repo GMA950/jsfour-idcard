@@ -47,7 +47,28 @@ $(document).ready(function(){
         trabajo2 = 'MECÁNICO';
       } else if ( trabajo == 'police' ) {
         trabajo2 = 'CARABINERO';
-      }//ADD JOBS HERE 
+      }else if ( trabajo == 'ambulance' ) {
+        trabajo2 = 'EMS';
+      }else if ( trabajo == 'fisherman' ) {
+        trabajo2 = 'INFORMAL';
+      }else if ( trabajo == 'fueler' ) {
+        trabajo2 = 'INFORMAL';
+      }else if ( trabajo == 'garbage' ) {
+        trabajo2 = 'INFORMAL';
+      }else if ( trabajo == 'lumberjack' ) {
+        trabajo2 = 'INFORMAL';
+      }else if ( trabajo == 'miner' ) {
+        trabajo2 = 'INFORMAL';
+      }else if ( trabajo == 'slaughterer' ) {
+        trabajo2 = 'INFORMAL';
+      }else if ( trabajo == 'tailor' ) {
+        trabajo2 = 'INFORMAL';
+      }else if ( trabajo == 'reporter' ) {
+        trabajo2 = 'PERIODISTA';
+      }else if ( trabajo == 'taxi' ) {
+        trabajo2 = 'TAXISTA';
+      }
+      //ADD JOBS HERE 
 
 
       if ( type == 'driver' || type == null) {

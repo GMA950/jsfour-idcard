@@ -13,11 +13,9 @@ local Keys = {
 ESX = nil
 
 local open = false
+--local posx, posy = 0.777, 0.26
+--local width, height = 0.07, 0.14
 --local LAurl = exports["mugshot"]:getMugshotUrl(GetPlayerPed(-1))
---local headshot
---local test
-
---print(headshot)
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -44,6 +42,64 @@ end)
 
 RegisterNetEvent('jsfour-idcard:shot')
 AddEventHandler('jsfour-idcard:shot', function(playerID)
+
+	local posx, posy = 0.777, 0.26
+	local width, height = 0.07, 0.14
+	local x, y = GetActiveScreenResolution()
+	--print('x: '..x..' y: '..y) DEV SHIT
+		if x == 1920 and y == 1080 then
+			posx, posy = 0.777, 0.26
+	 		width, height = 0.07, 0.14
+		elseif x == 1366 and y == 768 then
+			posx, posy = 0.686, 0.366
+			width, height = 0.086, 0.196
+		elseif x == 1360 and y == 768 then
+			posx, posy = 0.685, 0.366
+			width, height = 0.087, 0.196
+		elseif x == 1600 and y == 900 then
+			posx, posy = 0.732, 0.3122
+			width, height = 0.073, 0.168
+		elseif x == 1400 and y == 1050 then
+			posx, posy = 0.694, 0.267
+			width, height = 0.083, 0.145
+		elseif x == 1440 and y == 900 then
+			posx, posy = 0.702, 0.312
+			width, height = 0.082, 0.169
+		elseif x == 1680 and y == 1050 then
+			posx, posy = 0.745, 0.268
+			width, height = 0.068, 0.1435
+		elseif x == 1280 and y == 720 then
+			posx, posy = 0.665, 0.3905
+			width, height = 0.09, 0.2105
+		elseif x == 1280 and y == 768 then
+			posx, posy = 0.665, 0.366
+			width, height = 0.091, 0.196
+		elseif x == 1280 and y == 800 then
+			posx, posy = 0.665, 0.3515
+			width, height = 0.091, 0.1895
+		elseif x == 1280 and y == 960 then
+			posx, posy = 0.665, 0.2925
+			width, height = 0.091, 0.1585
+		elseif x == 1280 and y == 1024 then
+			posx, posy = 0.665, 0.2745
+			width, height = 0.091, 0.1475
+		elseif x == 1024 and y == 768 then
+			posx, posy = 0.5810, 0.366
+			width, height = 0.115, 0.1965
+		elseif x == 800 and y == 600 then
+			posx, posy = 0.4635, 0.4685
+			width, height = 0.1455, 0.251
+		elseif x == 1152 and y == 864 then
+			posx, posy = 0.6275, 0.325
+			width, height = 0.1005, 0.175
+		elseif x == 1280 and y == 600 then
+			posx, posy = 0.665, 0.468
+			width, height = 0.0905, 0.251
+		end
+		--posx, posy = newPosX(x), 0.338 -- (0.686, 0.388) cambiar a otra por el tamaño de la wea....677 338 F(X) = x*(91/554000) + (127869/277000)
+		--function not working, if somebody finds a relation between resolution and the fucking coords of the sprite, then tell me :v
+		--print(posx)
+
 	local playerPed = GetPlayerPed(GetPlayerFromServerId( playerID ))
 	--print(playerPed)
 	--local handle = RegisterPedheadshotTransparent(playerPed)
@@ -58,16 +114,37 @@ AddEventHandler('jsfour-idcard:shot', function(playerID)
 		Wait (100)
 		--print('test1')
 	end
+	--drawText() DEV SHIT
 	local headshot = GetPedheadshotTxdString (handle)
 	while open do
 		--print('test2')
 		Wait (5)
-		DrawSprite (headshot, headshot, 0.777, 0.26, 0.07, 0.14, 0.0, 255, 255, 255, 1000)
+		DrawSprite (headshot, headshot, posx, posy, width, height, 0.0, 255, 255, 255, 1000)
 	end
 	if not open then
 		UnregisterPedheadshot(handle)
 	end
 end)
+
+--[[ DEV SHIT
+function drawText()
+    Citizen.CreateThread(function()
+        while open do
+            Citizen.Wait(2)
+            SetTextFont(4)
+            SetTextScale(0.55, 0.55)
+            SetTextColour(185, 185, 185, 255)
+            SetTextDropshadow(0, 0, 0, 0, 255)
+            SetTextDropShadow()
+            SetTextOutline()
+            SetTextCentre(true)
+            BeginTextCommandDisplayText('STRING')
+            AddTextComponentSubstringPlayerName('~w~posx: ~g~'..posx..' ~w~posy: ~g~'..posy..' ~w~width: ~r~'..width..' ~w~height: ~r~'..height)
+            --EndTextCommandDisplayText(0.175, 0.805)
+            EndTextCommandDisplayText(0.5, 0.805) 
+        end
+    end)
+end--]]
 
 -- Key events
 Citizen.CreateThread(function()
@@ -82,21 +159,64 @@ Citizen.CreateThread(function()
 			})
 			open = false
 		end
+		--[[ DEV SHIT
+		if IsControlPressed(0, Keys['N4']) and open and not IsControlPressed(0, Keys['X']) then --IsControlJustReleased
+			posx = posx - 0.0005
+		end
+		if IsControlPressed(0, Keys['N6']) and open and not IsControlPressed(0, Keys['X']) then
+			posx = posx + 0.0005
+		end
+		if IsControlPressed(0, Keys['N8']) and open and not IsControlPressed(0, Keys['X']) then
+			posy = posy - 0.0005
+		end
+		if IsControlPressed(0, Keys['N5']) and open and not IsControlPressed(0, Keys['X']) then
+			posy = posy + 0.0005
+		end
+		if IsControlJustPressed(0, Keys['N4']) and open and IsControlPressed(0, Keys['X']) then --IsControlJustReleased
+			posx = posx - 0.0005
+		end
+		if IsControlJustPressed(0, Keys['N6']) and open and IsControlPressed(0, Keys['X']) then
+			posx = posx + 0.0005
+		end
+		if IsControlJustPressed(0, Keys['N8']) and open and IsControlPressed(0, Keys['X']) then
+			posy = posy - 0.0005
+		end
+		if IsControlJustPressed(0, Keys['N5']) and open and IsControlPressed(0, Keys['X']) then
+			posy = posy + 0.0005
+		end
+		------
+		if IsControlPressed(0, Keys['DOWN']) and open and not IsControlPressed(0, Keys['X']) then --IsControlJustReleased
+			height = height - 0.0005
+		end
+		if IsControlPressed(0, Keys['TOP']) and open and not IsControlPressed(0, Keys['X']) then
+			height = height + 0.0005
+		end
+		if IsControlPressed(0, Keys['RIGHT']) and open and not IsControlPressed(0, Keys['X']) then
+			width = width + 0.0005
+		end
+		if IsControlPressed(0, Keys['LEFT']) and open and not IsControlPressed(0, Keys['X']) then
+			width = width - 0.0005
+		end
+		if IsControlJustPressed(0, Keys['DOWN']) and open and IsControlPressed(0, Keys['X']) then --IsControlJustReleased
+			height = height - 0.0005
+		end
+		if IsControlJustPressed(0, Keys['TOP']) and open and IsControlPressed(0, Keys['X']) then
+			height = height + 0.0005
+		end
+		if IsControlJustPressed(0, Keys['RIGHT']) and open and IsControlPressed(0, Keys['X']) then
+			width = width + 0.0005
+		end
+		if IsControlJustPressed(0, Keys['LEFT']) and open and IsControlPressed(0, Keys['X']) then
+			width = width - 0.0005
+		end--]]
 	end
 end)
 
 function openMenu()
-	--
-	--local mugshot, mugshotStr = ESX.Game.GetPedMugshot(GetPlayerPed(-1))
-	--test = mugshot
-	--SetEntityAsMissionEntity (GetPlayerPed (-1))
-	--local PED_ID = NetworkGetNetworkIdFromEntity (GetPlayerPed (-1))
-	--print(PED_ID)
-	--
 	ESX.UI.Menu.Open(
 	  'default', GetCurrentResourceName(), 'id_card_menu', {
 		  --title    = 'ID menu',
-		  tittle   = 'Tus Documentos',
+		  title   = 'Tus Documentos',
 		  align    = 'top-left',
 		  elements = {
 			  {label = 'Revisa tu ID', value = 'checkID'},
